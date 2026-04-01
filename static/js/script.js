@@ -36,42 +36,64 @@ function calcularPorcentaje15(numero) {
 
 
 let pacientes = [];
+
 function agregarUrgencia(nombre) {
     pacientes.unshift(nombre);
-    return pacientes.join(", ");
-};
+}
 
-let asistencia = [];
 function agregarLista(nombre) {
     pacientes.push(nombre);
-    return pacientes.join(", ");
-};
+}
 
+
+function renderLista() {
+    const lista = document.getElementById("lista");
+
+    let listaHTML = "";
+
+    for (let i = 0; i < pacientes.length; i++) {
+        listaHTML += `<li>${pacientes[i]}</li>`;
+    }
+
+    lista.innerHTML = listaHTML;
+}
 
 function noUrgente() {
     const container = document.getElementById("resultadoContainer2");
     const result = document.getElementById("result2");
     const input = document.getElementById("input2");
+
     let nombre = input.value;
-    let resultado = agregarLista(nombre);
-    result.textContent = resultado;
-    input.value = "";
-    container.classList.remove("d-none");
-};
+
+    if (nombre !== "") {
+        agregarLista(nombre);
+        renderLista();
+
+        result.textContent = "Paciente agregado correctamente";
+        input.value = "";
+        container.classList.remove("d-none");
+    } else {
+        alert("Debe ingresar un nombre válido");
+    }
+}
 
 function urgenciaMedica() {
     const container = document.getElementById("resultadoContainer2");
     const result = document.getElementById("result2");
     const input = document.getElementById("input2");
+
     if (input.value !== "") {
         let nombre = input.value;
-        let resultado = agregarUrgencia(nombre);
-        result.textContent = resultado;
+
+        agregarUrgencia(nombre);
+        renderLista();
+
+        result.textContent = "Paciente agregado con urgencia";
         input.value = "";
         container.classList.remove("d-none");
     } else {
         alert("No puede estar vacío y debe contener un nombre válido");
-    };
+    }
 }
 
 
