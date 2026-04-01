@@ -15,7 +15,7 @@ function procesarNumero() {
         return;
     }
     let porcentaje = calcularPorcentaje15(numero);
-    resultado.textContent = `Resultado: ${porcentaje} $`;
+    resultado.textContent = `Resultado: $${porcentaje} CLP`;
 
 }
 function calcularPorcentaje15(numero) {
